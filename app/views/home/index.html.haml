@@ -1,1 +1,16 @@
-Strona główna
+%p= link_to "Dodaj Grupę", new_group_path
+%p Zaproszenia:
+- if user_signed_in?
+  %hr
+  - @invitations.each do |i|
+    %p= i.group.name 
+    = link_to "Potwierdź", confirm_membership_invitation_path(:id => i.id)
+
+%hr
+%p Grupy:
+- @groups.each do |g|
+  %p= link_to g.name, g
+
+%p Użytkownicy:
+- @users.each do |u|
+  %p= link_to u.email, u

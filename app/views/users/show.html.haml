@@ -1,0 +1,13 @@
+%h1= @user.email
+- if @groups != nil
+  - form_for @invitation do |f|
+    %p= hidden_field(:membership_invitation,:user_id,{:value => @user.id})
+    %p= f.select(:group_id, @groups.collect {|g| [g.name,g.id]})
+    %p= f.submit "Zaproś"
+
+- if user_signed_in?
+  - if @user.id == current_user.id
+    %hr
+    - @invitations.each do |i|
+      %p= i.group.name 
+      = link_to "Potwierdź", confirm_membership_invitation_path(:id => i.id)

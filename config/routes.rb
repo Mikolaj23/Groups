@@ -4,6 +4,14 @@ Groups::Application.routes.draw do
 
   root :to => "home#index"
 
+  resources :users, :groups
+  
+  resources :membership_invitations, :membership_requests do
+    member do
+      get 'confirm'
+    end
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

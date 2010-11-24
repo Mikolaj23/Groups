@@ -8,6 +8,7 @@
 </head>
 <body>
 <div id="user_nav">
+<%= link_to "Home" ,root_path%>
 <% if user_signed_in? %>
 <%= link_to current_user.email %>
 <%= link_to "Wyloguj", destroy_user_session_path %>

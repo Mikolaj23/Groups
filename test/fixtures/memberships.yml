@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user: 
+  group: 
+  banned: false
+  admin: false
+
+two:
+  user: 
+  group: 
+  banned: false
+  admin: false

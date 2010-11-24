@@ -10,7 +10,46 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101123093327) do
+ActiveRecord::Schema.define(:version => 20101123142419) do
+
+  create_table "groups", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "membership_invitations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.integer  "admin_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "membership_invitations", ["group_id", "user_id"], :name => "index_membership_invitations_on_group_id_and_user_id", :unique => true
+
+  create_table "membership_requests", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.boolean  "accepted",           :default => false
+    t.integer  "accepting_admin_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "membership_requests", ["user_id", "group_id"], :name => "index_membership_requests_on_user_id_and_group_id", :unique => true
+
+  create_table "memberships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.boolean  "banned",     :default => false
+    t.boolean  "admin"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "memberships", ["user_id", "group_id"], :name => "index_memberships_on_user_id_and_group_id", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false

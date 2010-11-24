@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user: 
+  group: 
+  accepted: false
+  accepting_admin_id: 1
+
+two:
+  user: 
+  group: 
+  accepted: false
+  accepting_admin_id: 1

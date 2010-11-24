@@ -1,0 +1,13 @@
+%h1= @group.name
+- if not @group.member?(current_user)
+  - form_for @request do |f|
+    %p= hidden_field(:membership_request, :group_id, {:value => @group.id})
+    %p= f.submit "Dołącz"
+Użytkownicy:
+- @group.memberships.each do |m|
+  %p= (link_to m.user.email, m.user) + ' ' +(m.admin ? 'Admin' : 'user')
+- if not @group.memberships.where(:user_id => current_user.id, :admin => true).empty?
+  %hr
+  - @group.membership_requests.each do |r|
+    %p= link_to "Potwierdź", confirm_membership_request_path(:id => r.id)
+
